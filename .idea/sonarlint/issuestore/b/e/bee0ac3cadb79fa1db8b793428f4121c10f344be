@@ -1,0 +1,6 @@
+
+Hsquid:S1905"*Remove this unnecessary cast to "Account".(Áá…¬8ÃÆÃĞ™/
+Hsquid:S1905$"*Remove this unnecessary cast to "Account".(×üÂ8ÃÆÃĞ™/
+}squid:S1488%"_Immediately return this expression instead of assigning it to the temporary variable "balance".(º£¸Ê8¸£Åª™/
+Tsquid:S1854 "6Remove this useless assignment to local variable "id".(—µû8Èº¦™/
+Esquid:S1481 "'Remove this unused "id" local variable.(—µû8Èº¦™/

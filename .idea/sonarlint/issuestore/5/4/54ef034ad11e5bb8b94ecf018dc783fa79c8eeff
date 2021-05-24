@@ -1,0 +1,12 @@
+
+nsquid:CommentedOutCodeLine2"<This block of commented-out lines of code should be removed.(ø¬¥½ýÿÿÿÿ8øÃ¦™/
+=squid:S1170"!Make this final field static too.(‡®¢Äøÿÿÿÿ
+Fsquid:S1068"*Remove this unused "getAll" private field.(ê„û„ùÿÿÿÿ
+isquid:CommentedOutCodeLine-"<This block of commented-out lines of code should be removed.(‰×Ö™8øüÇ¦™/
+[squid:UselessImportCheck"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8³ïöÕ™/
+8squid:S1170"!Make this final field static too.(½³ê·
+}squid:S1488"_Immediately return this expression instead of assigning it to the temporary variable "account".(ù‘Ž­8”µùÑ™/
+rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ä”òª
+=squid:S1170"!Make this final field static too.(ê„û„ùÿÿÿÿ
+Msquid:S1068"1Remove this unused "insertCardSql" private field.(‡®¢Äøÿÿÿÿ
+7squid:S1170"!Make this final field static too.(‹ÈV

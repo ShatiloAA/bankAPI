@@ -1,0 +1,10 @@
+
+¤squid:S1186!"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ä×ïåûÿÿÿÿ8ÄñØ©™/
+Wsquid:S1068"9Remove this unused "getUnapprovedCardsSql" private field.(Òßû’8¬…Ú©™/
+?squid:S1170"!Make this final field static too.(Òßû’8¬…Ú©™/
+?squid:S1170"!Make this final field static too.(  ©›8¬…Ú©™/
+Dsquid:S1170"!Make this final field static too.(‡®¢Äøÿÿÿÿ8¬…Ú©™/
+Dsquid:S1170"!Make this final field static too.( ¨”‰úÿÿÿÿ8¬…Ú©™/
+Tsquid:S1068"1Remove this unused "insertCardSql" private field.(‡®¢Äøÿÿÿÿ8¬…Ú©™/
+ysquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ä”òª8ÄñØ©™/
+Msquid:S1068"*Remove this unused "getAll" private field.( ¨”‰úÿÿÿÿ8¬…Ú©™/

@@ -1,0 +1,6 @@
+
+tsquid:S2068"V'Password' detected in this expression, review this potentially hard-coded credential.(ªåÁ™8âã´Æ™/
+isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ÁĞÇå8ÿßßÅ™/
+nsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(å°òİùÿÿÿÿ8³§³Æ™/
+Rsquid:S1068	"/Remove this unused "userService" private field.(Óï”¡ıÿÿÿÿ8ÿßßÅ™/
+Xsquid:S1191"5Use classes from the Java API instead of Sun classes.(—°ëÈûÿÿÿÿ8á±ƒª™/

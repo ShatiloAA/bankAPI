@@ -1,0 +1,10 @@
+
+usquid:S37761"RRefactor this method to reduce its Cognitive Complexity from 28 to the 15 allowed.(•Ó‹°ûÿÿÿÿ8Ãš¾Ñ™/
+gsquid:S1192"IDefine a constant instead of duplicating this literal "accounts" 3 times.(¸©èÿ8‚Ñè¡™/
+nsquid:CommentedOutCodeLined"<This block of commented-out lines of code should be removed.(Žˆ‰ûûÿÿÿÿ8¢ŸùÊ™/
+Ssquid:S1191"5Use classes from the Java API instead of Sun classes.(üÕÙä8§á¢™/
+usquid:S1171"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ
+nsquid:CommentedOutCodeLine6"<This block of commented-out lines of code should be removed.(“‰­¼ÿÿÿÿÿ8½¸šÒ™/
+Hsquid:S14818",Remove this unused "account" local variable.(èæÙüÿÿÿÿÿ
+psquid:S001172"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ôËì¬8§á¢™/
+isquid:S1192"FDefine a constant instead of duplicating this literal "cards" 3 times.(Ëíªþÿÿÿÿ8‚Ñè¡™/

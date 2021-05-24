@@ -1,0 +1,11 @@
+
+Msquid:S1068"*Remove this unused "getAll" private field.(ßÙ¡ßþÿÿÿÿ8Ëô‡Õ™/
+rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ä”òª
+isquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(—ÛÇ»8‘à‰Ð™/
+?squid:S1170"!Make this final field static too.(üª¢8ËÃåÔ™/
+=squid:S1170"!Make this final field static too.(åòˆ›øÿÿÿÿ
+psquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(š—óó8žÕÒ™/
+Dsquid:S1170"!Make this final field static too.(£Èß»ûÿÿÿÿ8ËÔÂÒ™/
+zsquid:S1488"\Immediately return this expression instead of assigning it to the temporary variable "card".(ÎÙå¹8‘ÌÒ™/
+=squid:S1170"!Make this final field static too.(ßÙ¡ßþÿÿÿÿ
+squid:S1186;"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÝÝÝýÿÿÿÿ

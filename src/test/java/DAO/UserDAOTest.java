@@ -2,7 +2,9 @@ package DAO;
 
 import model.Role;
 import model.User;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import util.DBUtils;
 
 import java.sql.SQLException;
 
@@ -18,6 +20,11 @@ class UserDAOTest {
     void getOneByIdPositiveCase() throws SQLException {
         User userFromDB = (User) dao.getOneById(USER1.getId());
         assertEquals(USER1, userFromDB);
+    }
+
+    @BeforeEach
+    void initDB() {
+        new DBUtils().fill();
     }
 
     @Test

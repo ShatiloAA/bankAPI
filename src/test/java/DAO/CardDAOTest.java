@@ -1,7 +1,9 @@
 package DAO;
 
 import model.Card;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import util.DBUtils;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,6 +17,11 @@ class CardDAOTest {
     final static Card CARD1 = new Card(1, 1000000000000000L, 1, true);
     final static Card CARD2 = new Card(2, 1000000000000001L, 1, true);
     final static List<Card> twoCards = Arrays.asList(CARD1, CARD2);
+
+    @BeforeEach
+    void initDB() {
+        new DBUtils().fill();
+    }
 
     @Test
     void getOneById() throws SQLException {

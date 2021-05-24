@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Card extends AbstractDTO{
 
-    private int userID;
+    private int cardID;
     private long cardNumber;
     private int accountID;
     private boolean isActive;
@@ -13,8 +13,8 @@ public class Card extends AbstractDTO{
 
     }
 
-    public Card(int userID, long cardNumber, int accountID, boolean isActive) {
-        this.userID = userID;
+    public Card(int cardID, long cardNumber, int accountID, boolean isActive) {
+        this.cardID = cardID;
         this.cardNumber = cardNumber;
         this.accountID = accountID;
         this.isActive = isActive;
@@ -29,11 +29,11 @@ public class Card extends AbstractDTO{
     }
 
     public int getUserId() {
-        return userID;
+        return cardID;
     }
 
     public void setUserId(int userId) {
-        this.userID = userID;
+        this.cardID = cardID;
     }
 
     public long getCardNumber() {
@@ -55,7 +55,7 @@ public class Card extends AbstractDTO{
     @Override
     public String toString() {
         return "Card{" +
-                "userId=" + userID +
+                "userId=" + cardID +
                 ", cardNumber=" + cardNumber +
                 ", account=" + accountID +
                 ", isActive=" + isActive +
@@ -67,7 +67,7 @@ public class Card extends AbstractDTO{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Card card = (Card) o;
-        return userID == card.userID &&
+        return cardID == card.cardID &&
                 cardNumber == card.cardNumber &&
                 accountID == card.accountID &&
                 isActive == card.isActive;
@@ -75,6 +75,6 @@ public class Card extends AbstractDTO{
 
     @Override
     public int hashCode() {
-        return Objects.hash(userID, cardNumber, accountID, isActive);
+        return Objects.hash(cardID, cardNumber, accountID, isActive);
     }
 }

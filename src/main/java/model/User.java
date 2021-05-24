@@ -29,6 +29,8 @@ public class User extends AbstractDTO {
         this.role = role;
     }
 
+
+
     public int getId() {
         return id;
     }

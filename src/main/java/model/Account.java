@@ -1,8 +1,8 @@
 package model;
 
-import java.util.List;
+import java.util.Objects;
 
-public class Account extends AbstractDTO{
+public class Account extends AbstractDTO {
     private int ID;
     private int userId;
     private long account;
@@ -57,5 +57,18 @@ public class Account extends AbstractDTO{
                 ", account=" + account +
                 ", balance=" + balance +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Account account1 = (Account) o;
+        return ID == account1.ID && userId == account1.userId && account == account1.account && Double.compare(account1.balance, balance) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ID, userId, account, balance);
     }
 }

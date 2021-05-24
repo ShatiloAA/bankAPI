@@ -15,6 +15,14 @@ public class AccountDAO extends AbstractDAO{
     private final String getOne = "select * from ACCOUNTS where id = ?";
     private final String increaseBalance = "update ACCOUNTS set balance = ? where id = ?";
 
+
+    /**
+     * Поиск счета по Account
+     * @param accountID принимает ID по которому осуществляется поиск в БД
+     * @return DTO Account
+     * @throws SQLException
+     */
+
     @Override
     public Account getOneById(int accountID) throws SQLException {
         return executeQuery(getOne, statement -> {
@@ -29,6 +37,11 @@ public class AccountDAO extends AbstractDAO{
         });
     }
 
+    /**
+     * Создает запись в БД из переданного DTO
+     * @param dto принимает реализацию dto
+     * @return количество измененных строк
+     */
 
     @Override
     public int update(AbstractDTO dto) {
@@ -43,19 +56,14 @@ public class AccountDAO extends AbstractDAO{
         } catch (SQLException e) {
             return 0;
         }
-
-    /*    if (dto instanceof Balance) {
-
-            System.out.println(newBalance);
-            executeQuery(increaseBalance, statement -> {
-                statement.setInt(1, id);
-                statement.setDouble(2, newBalance);
-                //statement.executeUpdate();
-                System.out.println(statement.executeUpdate());
-                return null;
-            });
-        }*/
     }
+
+    /**
+     * Создает объект DTO из переданного resultSet
+     * @param resultSet
+     * @return объект DTO Account
+     * @throws SQLException
+     */
 
     private Account buildAccount(ResultSet resultSet) throws SQLException {
         return new Account(

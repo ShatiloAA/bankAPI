@@ -52,7 +52,7 @@ Content-Type: application/json
 Authorization: Basic bean YmVhbjE0ODg=
 
 {
-  "accountID":"1","balance":"0"
+  "accountID":"3","balance":"100"
 }
 
 ###
@@ -71,7 +71,7 @@ Accept: application/json
 
 ###
 
-GET http://localhost:8000/users/accounts/
+GET http://localhost:8000/users/accounts/1
 Accept: application/json
-
+Authorization: Basic hill aGlsbGhpbGxoaWxs
 ###

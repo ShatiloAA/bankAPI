@@ -13,7 +13,6 @@ import java.sql.SQLException;
 
 public class UserDAO extends AbstractDAO {
 
-    private final String getAll = "select * from users";
     private final String getByID = "select * from users where id = ?";
     private final String getByLogin = "select * from users where login = ?";
 
@@ -22,8 +21,10 @@ public class UserDAO extends AbstractDAO {
         return executeQuery(getByID, statement -> {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            return buildUser(resultSet);
+            if (resultSet.next()) {
+                return buildUser(resultSet);
+            }
+            return null;
         });
     }
 
@@ -32,8 +33,10 @@ public class UserDAO extends AbstractDAO {
         return executeQuery(getByLogin, statement -> {
             statement.setString(1, login);
             ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            return buildUser(resultSet);
+            if (resultSet.next()){
+                return buildUser(resultSet);
+            }
+           return null;
         });
     }
 

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Направляет запросы по картам в БД через JDBC, реализует общий интерфейс DAO
@@ -14,25 +15,36 @@ import java.util.List;
 
 public class CardDAO extends AbstractDAO {
 
-    private final String getAll = "select * from cards";
     private final String getCardsByAccountID = "select c.id, c.number, account_id, is_active from cards c " +
             "join accounts a on c.account_id = a.id where a.id =?";
     private final String getCardByID = "select * from cards where id = ?";
     private final String newCard = "insert into cards (account_id, is_active) " +
             "values (?, true)";
-    //private final String activateCardSql = "update card set active = true where id = ?";
 
+    /**
+     * Поиск карты по cardID
+     * @param ID  принимает ID по которому осуществляется поиск в БД
+     * @return DTO CARD
+     * @throws SQLException
+     */
     @Override
     public Card getOneById(int ID) throws SQLException {
         return executeQuery(getCardByID, statement -> {
             statement.setInt(1, ID);
             ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            Card card = buildCard(resultSet);
-            return card;
+            if(resultSet.next()) {
+                return buildCard(resultSet);
+            }
+            return null;
         });
     }
 
+    /**
+     * Возввращает все карты по accountID
+     * @param accountID
+     * @return List<Card>
+     * @throws SQLException
+     */
     public List<Card> getAllByAccountId(int accountID) throws SQLException {
         return executeQuery(getCardsByAccountID, statement -> {
             statement.setInt(1, accountID);
@@ -41,9 +53,15 @@ public class CardDAO extends AbstractDAO {
             while (resultSet.next()) {
                 cards.add(buildCard(resultSet));
             }
-            return cards;
+            return cards.size() > 0 ? cards : null;
         });
     }
+
+    /**
+     * Создает запись в БД из переданного DTO
+     * @param dto принимает реализацию dto
+     * @return количество измененных строк
+     */
 
     @Override
     public int create(AbstractDTO dto){
@@ -59,6 +77,12 @@ public class CardDAO extends AbstractDAO {
         }
     }
 
+    /**
+     * Собирает объект из полученного resultSet
+     * @param resultSet
+     * @return объект Card
+     * @throws SQLException
+     */
     private Card buildCard(ResultSet resultSet) throws SQLException {
         return new Card(
                 resultSet.getInt(1),

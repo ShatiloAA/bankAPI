@@ -2,7 +2,6 @@ package controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpServer;
-import model.Card;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,6 +14,8 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static util.PropertyManager.AUTH_REALM;
@@ -46,8 +47,7 @@ class ClientControllerTest {
 
     @Test
     void handlePost405() throws IOException {
-        int port = SERVER_PORT;
-        URL url = new URL("http://localhost:" + port + "/users/test/");
+        URL url = new URL("http://localhost:" + SERVER_PORT + "/users/test/");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("PUT");
         connection.setRequestProperty("Authorization", "Basic YmVhbjpZbVZoYmpFME9EZz0=");
@@ -55,21 +55,19 @@ class ClientControllerTest {
     }
 
     @Test
-    void handlePost400WithBadAccountID() throws IOException {
-        int port = SERVER_PORT;
-        URL url = new URL("http://localhost:" + port + "/users/cards/3");
+    void handlePost404WithBadAccountID() throws IOException {
+        URL url = new URL("http://localhost:" + SERVER_PORT + "/users/account/4");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Accept-Charset", "UTF-8");
         connection.setRequestProperty("Content-Type", "application/json");
         connection.setRequestProperty("Authorization", "Basic YmVhbjpZbVZoYmpFME9EZz0=");
-        assertEquals(400, connection.getResponseCode());
+        assertEquals(404, connection.getResponseCode());
     }
 
     @Test
     void handlePost200WithGetAllCardForTestAccountID() throws IOException {
-        int port = SERVER_PORT;
-        URL url = new URL("http://localhost:" + port + "/users/cards/1");
+        URL url = new URL("http://localhost:" + SERVER_PORT + "/users/cards/1");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Accept-Charset", "UTF-8");
@@ -80,34 +78,94 @@ class ClientControllerTest {
 
     @Test
     void handlePost400WithBadAccountIDForGetBalance() throws IOException {
-        int port = SERVER_PORT;
-        URL url = new URL("http://localhost:" + port + "/users/accounts/3");
+        URL url = new URL("http://localhost:" + SERVER_PORT + "/users/accounts/4");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Accept-Charset", "UTF-8");
         connection.setRequestProperty("Content-Type", "application/json");
         connection.setRequestProperty("Authorization", "Basic YmVhbjpZbVZoYmpFME9EZz0=");
-        connection.setDoOutput(true);
         assertEquals(400, connection.getResponseCode());
     }
 
     @Test
     void handlePost200WithNewCard() throws IOException {
-        int port = SERVER_PORT;
-        URL url = new URL("http://localhost:" + port + "/users/accounts/2");
+        URL url = new URL("http://localhost:" + SERVER_PORT + "/users/cards/");
+        String base64 = Base64.getEncoder().encodeToString("hill:aGlsbGhpbGxoaWxs".getBytes(StandardCharsets.UTF_8));
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Accept-Charset", "UTF-8");
         connection.setRequestProperty("Content-Type", "application/json");
-        connection.setRequestProperty("Authorization", "Basic YmVhbjpZbVZoYmpFME9EZz0=");
+        connection.setRequestProperty("Authorization", "Basic " + base64);
         connection.setDoOutput(true);
-        Card card = new Card();
-        String jsonRequest = mapper.writeValueAsString(card);
+        String jsonRequest = "{\n" +
+                "  \"accountID\": \"3\"\n" +
+                "}";
         DataOutputStream out = new DataOutputStream(connection.getOutputStream());
         out.writeBytes(jsonRequest);
         out.flush();
         out.close();
-
         assertEquals(200, connection.getResponseCode());
     }
+
+    @Test
+    void handlePost400WithNewCard() throws IOException {
+        URL url = new URL("http://localhost:" + SERVER_PORT + "/users/cards/");
+        String base64 = Base64.getEncoder().encodeToString("hill:aGlsbGhpbGxoaWxs".getBytes(StandardCharsets.UTF_8));
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Accept-Charset", "UTF-8");
+        connection.setRequestProperty("Content-Type", "application/json");
+        connection.setRequestProperty("Authorization", "Basic " + base64);
+        connection.setDoOutput(true);
+        String jsonRequest = "{\n" +
+                "  \"accountID\": \"4\"\n" +
+                "}";
+        DataOutputStream out = new DataOutputStream(connection.getOutputStream());
+        out.writeBytes(jsonRequest);
+        out.flush();
+        out.close();
+        assertEquals(400, connection.getResponseCode());
+    }
+
+    @Test
+    void handlePost200WithIncreaseBalance() throws IOException {
+        URL url = new URL("http://localhost:" + SERVER_PORT + "/users/accounts/");
+        String base64 = Base64.getEncoder().encodeToString("hill:aGlsbGhpbGxoaWxs".getBytes(StandardCharsets.UTF_8));
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Accept-Charset", "UTF-8");
+        connection.setRequestProperty("Content-Type", "application/json");
+        connection.setRequestProperty("Authorization", "Basic " + base64);
+        connection.setDoOutput(true);
+        String jsonRequest = "{\n" +
+                "  \"accountID\":\"3\",\"balance\":\"100\"\n" +
+                "}";
+        DataOutputStream out = new DataOutputStream(connection.getOutputStream());
+        out.writeBytes(jsonRequest);
+        out.flush();
+        out.close();
+        assertEquals(200, connection.getResponseCode());
+    }
+
+    @Test
+    void handlePost400WithIncreaseBalance() throws IOException {
+        URL url = new URL("http://localhost:" + SERVER_PORT + "/users/accounts/");
+        String base64 = Base64.getEncoder().encodeToString("hill:aGlsbGhpbGxoaWxs".getBytes(StandardCharsets.UTF_8));
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Accept-Charset", "UTF-8");
+        connection.setRequestProperty("Content-Type", "application/json");
+        connection.setRequestProperty("Authorization", "Basic " + base64);
+        connection.setDoOutput(true);
+        String jsonRequest = "{\n" +
+                "  \"accountID\":\"3\",\"balance\":\"-1\"\n" +
+                "}";
+        DataOutputStream out = new DataOutputStream(connection.getOutputStream());
+        out.writeBytes(jsonRequest);
+        out.flush();
+        out.close();
+        assertEquals(400, connection.getResponseCode());
+    }
+
+
 }

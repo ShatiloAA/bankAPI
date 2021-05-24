@@ -87,7 +87,6 @@ public class ClientController extends AbstractController {
                 break;
 
             case "POST":
-
                 //new card
                 if ("cards".equals(resource)) {
                     CardService cardService = (CardService) getRequiredService(resource);
